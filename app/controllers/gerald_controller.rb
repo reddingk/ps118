@@ -7,4 +7,7 @@ class GeraldController < ApplicationController
 
   def sid
   end
+  
+  def construction
+  end
 end

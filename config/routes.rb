@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
-  root'gerald#index'
+  get 'user_manag/index'
+
+#Gerald
+  root 'gerald#index'
 
   get 'gerald/arnold'
 
   get 'gerald/sid'
 
+  get 'gerald/construction'
+#Brainy
+  get 'brainy/index'
+
+  get 'brainy/eugene'
+#User Managament
+  get 'users/index'
+  get 'users/new'
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

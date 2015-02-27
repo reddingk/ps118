@@ -9,3 +9,27 @@ body {font-family: "Comic Sans MS", cursive, sans-serif; }
 
 .ps-nav-link { padding:0px 10px !important; border-left: 1px solid #ffffff;}
 .ps-nav-more { padding:30px 1px 0px 0px !important;}
+
+.nav-txt { font-size: 16px;}
+
+.dropdown-menu#gerald-drop { background-color: #6CA3D7; }
+.dropdown-menu#brainy-drop { background-color: #B5232B; }
+.dropdown-menu#helga-drop { background-color: #D97987; }
+.dropdown-menu#phoebi-drop { background-color: #E2A83F; }
+
+/* forms */
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
