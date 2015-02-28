@@ -20,8 +20,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">User configerations</li>
-            <li><%=link_to "User Management", { controller: "users", action: "index"}%></li>
-            <li><a href="#">Settings</a></li>
+            <% if current_user.admin?  %>
+              <li><%=link_to "User Management", { controller: "users", action: "index"}%></li>
+            <% end %>
+            <li><%=link_to "Settings", { controller: "users", action: "edit"}%></li>
             <li><%=link_to "Log out", { controller: "sessions", action: "destroy"}%></li>
           </ul>
         </li>
