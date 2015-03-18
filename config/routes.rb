@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'devices/new'
+
   get 'sessions/new'
 
   get 'user_manag/index'
@@ -16,14 +18,20 @@ Rails.application.routes.draw do
 
   get 'brainy/eugene'
 #User Managament
-  get 'users/index'
+  get   'UserManagement'  => 'users#index'
   get 'users/new'
-  get 'users/edit'
+  get 'users/edit' 
+  
 #Sessions
   get    'login' => 'sessions#new'
   post   'login' => 'sessions#create'
   get    'logout' => 'sessions#destroy'
   resources :users
+  
+#Devices
+  get 'adduserdevice' => 'devices#new'
+  resources :devices
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

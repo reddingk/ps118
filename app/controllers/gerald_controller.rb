@@ -3,6 +3,8 @@ class GeraldController < ApplicationController
   end
 
   def arnold
+    @device = Device.where("userid = ?", current_user.id)
+    #Device.paginate(page: params[:page])
   end
 
   def sid

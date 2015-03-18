@@ -1,2 +1,35 @@
-<h1>Gerald#arnold</h1>
-<p>Find me in app/views/gerald/arnold.html.erb</p>
+<% provide(:title, "Arnold") %>
+<h1 class="page-title gerald-set"><%= image_tag('silo/Arnold.png', class:'ps-page-icon', alt:'Arnold') %> Eugene</h1>
+
+<div class="row">
+    <!--Left Section-->
+    <div class="col-md-5 gerald-border">
+        <p><%=link_to "Add New Device", { controller: "devices", action: "new"}%></p>
+        <table class="users">
+            <tr>
+                <th>Device ID</th>
+                <th>Device Name</th>
+                <th>Device Type</th>
+            </tr>
+            
+            <% @device.each do |device| %>
+            <tr>
+                <td> <%= device.id %> </td>
+                <td> <%= device.name %>  </td>
+                <td> <%= device.dev_type %>  </td>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+    <!--Add Space-->
+    <div class="col-md-1"></div>
+    <!--Right Section-->
+    <div class="col-md-6 gerald-border">
+        TEST2
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 gerald-border" >Main content test3</div>
+</div>
+
+<div class="row"></div>

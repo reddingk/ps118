@@ -23,7 +23,7 @@
             <% if current_user.admin?  %>
               <li><%=link_to "User Management", { controller: "users", action: "index"}%></li>
             <% end %>
-            <li><%=link_to "Settings", { controller: "users", action: "edit"}%></li>
+            <li><%=link_to "Settings", { controller: "users", action: "edit", :id => current_user.id }%></li>
             <li><%=link_to "Log out", { controller: "sessions", action: "destroy"}%></li>
           </ul>
         </li>
@@ -49,6 +49,7 @@
       
         <div id="navbar" class="navbar-collapse collapse">            
           <ul class="nav navbar-nav navbar-right">
+           <%if logged_in? %>
             <li class="dropdown">
               <a href="" class="dropdown-toggle ps-nav-link" data-toggle="dropdown" role="button" aria-expanded="false"><%=image_tag('Gerald_G.png', class:'ps-nav-icons0', alt:'Gerald Gang') %>
                 <i class="glyphicon glyphicon-th-large"></i></span></a>
@@ -85,6 +86,9 @@
     	              <li><%=link_to (image_tag('silo/StoopKid.png', class:'ps-nav-icons1', alt:'Stoop Kid')+"Stoop Kid").html_safe, { controller: "gerald", action: "construction"}, class:"navbar-brand nav-txt"%></li>
     	          </ul>
             </li>
+          <%else%>
+            <li><%=link_to "Log in", { controller: "sessions", action: "new"}%></li>
+          <%end%>
           </ul>
         </div><!--/.nav-collapse -->        
         

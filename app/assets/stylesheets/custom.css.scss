@@ -17,6 +17,16 @@ body {font-family: "Comic Sans MS", cursive, sans-serif; }
 .dropdown-menu#helga-drop { background-color: #D97987; }
 .dropdown-menu#phoebi-drop { background-color: #E2A83F; }
 
+.gerald-set { color: #6CA3D7; }
+.brainy-set { color: #B5232B; }
+.helga-set { color: #D97987; }
+.phoebi-set { color: #E2A83F; }
+
+.gerald-border { border: 5px solid #6CA3D7; border-radius:10px;}
+.brainy-border { border: 5px solid #B5232B; border-radius:10px;}
+.helga-border { border: 5px solid #D97987; border-radius:10px;}
+.phoebi-border { border: 5px solid #E2A83F; border-radius:10px;}
+
 /* forms */
 
 #error_explanation {
@@ -38,3 +48,7 @@ body {font-family: "Comic Sans MS", cursive, sans-serif; }
 .users {
   width: 100%;
 }
+
+/*L2 Page*/
+.ps-page-icon { width:90px;}
+.row { margin-bottom: 20px;}
