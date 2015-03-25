@@ -16,6 +16,12 @@ class DevicesController < ApplicationController
   def edit
   end
   
+  def destroy
+    Device.find(params[:id]).destroy
+    flash[:success] = "Device deleted"
+    redirect_to root_url
+  end
+  
   private
 
     def device_params

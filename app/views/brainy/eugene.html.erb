@@ -1,23 +1,70 @@
 <% provide(:title, "Eugene") %>
+
 <h1 class="page-title brainy-set"><%= image_tag('silo/Eugene.png', class:'ps-page-icon', alt:'Eugene') %> Eugene</h1>
 
 <div class="row">
     <!--Left Section-->
-    <div class="col-md-5 brainy-border">TEST1</div>
+    <div class="col-md-5 brainy-border">
+        <%= select("Device_choice", "Device_id", Device.where("userid = ?", current_user.id).collect {|p| [ p.name, p.id ] }, {prompt: 'Select Device'})%>
+    </div>
+    
     <!--Add Space-->
     <div class="col-md-1"></div>
+    
     <!--Right Section-->
     <div class="col-md-6 brainy-border">
-        <div id="tree-box">
+        <!--<div id="tree-box">
 	        <ul id="tree-box-list" aria-dropeffect="copy execute"> 
     	        <li>Drag and drop folder here</li>
             </ul>
         </div>
+        <button id="submit-logs" class="buttonesque" type="button">Submit</button>
         <button id="clear-logs" class="buttonesque" type="button">Clear</button>
+        -->
+        <div class="well">
+          <%= form_for @sfile_u, html: { multipart: true } do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            
+            <%=f.label :devid %>
+            <%=f.text_field :devid %>
+            
+            <%= f.label :syncfile %>
+            <%= f.file_field :syncfile %>
+            
+            <%= f.hidden_field :userid  , :value => current_user.id %>
+            
+            <%= f.submit "Save", class: "btn btn-primary" %>
+          <% end %>
+        </div>
     </div>
 </div>
+
 <div class="row">
-    <div class="col-md-12 brainy-border" >Main content test3</div>
+    <div class="col-md-12 brainy-border" >
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>User Id</th>
+              <th>Device Id</th>
+              <th>Download Link</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sfile.each do |sfile| %>
+              <tr>
+                <td><%= sfile.name %></td>
+                <td><%= sfile.userid %></td>
+                <td><%= sfile.devid %></td>
+                <td><%= link_to "Download File", sfile.syncfile_url %></td>
+                <td><%= button_to "Delete",  sfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{sfile.name}?" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="row"></div>

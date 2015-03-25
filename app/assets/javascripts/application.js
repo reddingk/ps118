@@ -17,33 +17,7 @@
 //= require bootstrap-sprockets
 
 $(document).ready(function () {
-  /*var trigger = $('.hamburger'),
-      overlay = $('.overlay'),
-     isClosed = false;
-
-    trigger.click(function () {
-    //    alert('2');
-      //hamburger_cross();      
-    });
-
-    function hamburger_cross() {
-
-      if (isClosed == true) {          
-        overlay.hide();
-        trigger.removeClass('is-open');
-        trigger.addClass('is-closed');
-        isClosed = false;
-      } else {   
-        overlay.show();
-        trigger.removeClass('is-closed');
-        trigger.addClass('is-open');
-        isClosed = true;
-      }
-  }
   
-  $('[data-toggle="offcanvas"]').click(function () {
-        $('#wrapper').toggleClass('toggled');
-  });*/ 
   
 });
 
@@ -70,6 +44,8 @@ window.addEventListener('load', function (e) {
 
         var parentNode = document.getElementById('tree-box-list');
         var length = e.dataTransfer.items.length;
+        var filelist = [];
+        
         if (length > -1) {
             clearLog();
         }
@@ -78,17 +54,35 @@ window.addEventListener('load', function (e) {
             var entries = [];
             entries[0] = e.dataTransfer.items[i].webkitGetAsEntry();
             readDirectory(entries, parentNode);
+            //EugeneRead(entries, parentNode);
         }
 
         e.currentTarget.classList.remove('over-line');
     });
 
-    var btn = document.getElementById('clear-logs');
-    btn.addEventListener('click', function (e) {
+    var c_btn = document.getElementById('clear-logs');
+    c_btn.addEventListener('click', function (e) {
         clearLog();
         appendStr('Drag and drop folder here');
     });
+    var s_btn = document.getElementById('clear-logs');
+    c_btn.addEventListener('click', function (e) {
+        submitLog();
+    });
 });
+/*Eugene Read*/
+// Recursive directory read 
+function EugeneRead(entries, parentNode) {
+
+    for (var i = 0; i < entries.length; i++) {  	
+
+        if (entries[i].isDirectory) {
+            
+        } else {
+           
+        }
+    }
+}
 
 
 // Recursive directory read 
@@ -107,13 +101,11 @@ function readDirectory(entries, parentNode) {
     }
 }
 
-
 function appendFile(file) {
     if (file.type === 'text/plain')
         appendTextFile(file);
 
-    if (imageTypes.indexOf(file.type) > -1)
-        appendImageFile(file);
+    /*if (imageTypes.indexOf(file.type) > -1) appendImageFile(file);*/
 }
 
 
@@ -163,7 +155,6 @@ function getAllEntries(directoryReader, callback, parentNode) {
     readEntries();
 }
 
-
 function toArray(list) {
     return Array.prototype.slice.call(list || [], 0);
 }
@@ -190,6 +181,10 @@ function empty(node) {
     }
 }
 
+function submitLog() {
+    
+}
+
 function appendStr(str) {
     var log = document.getElementById('tree-box-list');
     var li = document.createElement('li');
@@ -200,7 +195,6 @@ function appendStr(str) {
 function appendItem(name, type, parentNode) {
     var li = document.createElement('li');
     
-    //li.innerHTML = <%= image_tag( type +'.png') %>;
     li.innerHTML = '<img src="/assets/' + type + '.png" />' + name;
     parentNode.appendChild(li);
 }

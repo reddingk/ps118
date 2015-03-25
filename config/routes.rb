@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'sfiles/new'
+
+  post 'sfiles/create'
+
+  get 'sfiles/destroy'
+
   get 'devices/new'
 
   get 'sessions/new'
@@ -17,6 +23,8 @@ Rails.application.routes.draw do
   get 'brainy/index'
 
   get 'brainy/eugene'
+ resources :sfiles
+  
 #User Managament
   get   'UserManagement'  => 'users#index'
   get 'users/new'
@@ -31,6 +39,8 @@ Rails.application.routes.draw do
 #Devices
   get 'adduserdevice' => 'devices#new'
   resources :devices
+#Sfiles
+  resources :sfiles_, only: [:new, :create, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
