@@ -18,16 +18,10 @@
 
 $(document).ready(function () {
   
-    var mytextbox = document.getElementById('sfile_name');
-    var file_save = document.getElementById('sfile_syncfile');
-    var Reg =  /[^\\]*$/;
     
-    file_save.onchange = function(){
-         mytextbox.value = Reg.exec(this.value);
-    }
-    
+  
 });
-
+    
 /*Brainy*/
 var imageTypes = ['image/png', 'image/jpeg', 'image/gif']
 

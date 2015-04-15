@@ -1,0 +1,30 @@
+<nav class="header-nav" >         
+        <div class="nav-header">
+            @Html.ActionLink("IPEDS", "Index", "Home", null, new { @class = "nav-header" })
+        </div>
+        
+        <div class="nav-right">            
+            <ul class="nav-right-menu">
+                <li class="nav-right-icons" id="mini-nav-menu">                
+                        Menu
+                   
+                    <ul class="mini-nav">
+                        <li>@Html.ActionLink("Find Your College", "FindYourCollege", "Level2", null, new { @class = "mini-nav-button", id = "fyc" })</li>
+                        <li>@Html.ActionLink("Use The Data", "UseTheData", "Level2", null, new { @class = "mini-nav-button", id = "utd" })</li>
+                        <li>@Html.ActionLink("Report Your Data", "ReportYourData", "Level2", null, new { @class = "mini-nav-button", id = "ryd" })</li>
+                        <li>@Html.ActionLink("Join In", "JoinIn", "Level2", null, new { @class = "mini-nav-button", id = "ji" })</li>
+                    </ul>
+
+                </li>
+                <li class="nav-right-icons">@Html.ActionLink("Questions", "Questions", "Home", null, new { @class = "nav-icons" })</li>
+                <li class="nav-right-icons">@Html.ActionLink("Inside Staff", "InsideStaff", "Home", null, new { @class = "nav-icons" })</li>
+                <li class="nav-right-icons">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-icons" })</li>
+                <li class="nav-right-icons">
+                    <div class="searchbox">
+                        @Html.TextBox("searchbar", null, new { @class = "nav-search" })
+                        <!--Search Button-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>

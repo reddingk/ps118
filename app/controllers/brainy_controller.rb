@@ -1,12 +1,19 @@
 class BrainyController < ApplicationController
   def index
     @device = Device.where("userid = ?", current_user.id)
-    @sfile = Sfile.all
+    @sfile = Sfile.where("userid = ?", current_user.id)
   end
 
   def eugene
      @device = Device.where("userid = ?", current_user.id)
-     @sfile = Sfile.all
+     
+     if(params[:devid] == nil)
+      @pageid = @device.first.id 
+     else
+       @pageid = params[:devid]
+     end
+     
+     @sfile = Sfile.where("userid = ? and devid = ?", current_user.id, @pageid)
      @sfile_u = Sfile.new
   end
   
