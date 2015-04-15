@@ -30,3 +30,10 @@
             padding-top: 10px;
             padding-left: 16px;
         }
+        
+        .collapsible-list {list-style: none;}
+        .collapsible-list > li { display: block;}
+        
+        .collapsible-list li > input[type=checkbox] { width: 10%; opacity: 0;}
+        .collapsible-list li > input[type=checkbox] + .file-list > li { display: none; }
+        .collapsible-list li > input[type=checkbox]:checked + .file-list > li { display: block; }

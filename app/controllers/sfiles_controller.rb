@@ -6,12 +6,17 @@ class SfilesController < ApplicationController
   def create
     @sfile = Sfile.new(sfile_params)
     if @sfile.save
-      redirect_to '/brainy/eugene', notice: "The file #{@sfile.name} has been uploaded."
+      redirect_to '/brainy/eugene'
+      flash[:success] = "The file #{@sfile.name} has been uploaded."
     else
     end
   end
 
   def destroy
+    @sfile = Sfile.find(params[:id])
+    @sfile.destroy
+    redirect_to '/brainy/eugene'
+    flash[:success] = "The file #{@sfile.name} has been deleted."
   end
   
   private 

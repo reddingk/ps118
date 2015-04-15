@@ -1,5 +1,7 @@
 class BrainyController < ApplicationController
   def index
+    @device = Device.where("userid = ?", current_user.id)
+    @sfile = Sfile.all
   end
 
   def eugene
@@ -8,12 +10,15 @@ class BrainyController < ApplicationController
      @sfile_u = Sfile.new
   end
   
-  def create
-    @sfile = Sfile.new(sfile_params)
-    if @sfile.save
-      redirect_to '/gerald/arnold', notice: "The file #{@sfile.name} has been uploaded."
-    else
-    end
+  def download
+    #send_file Rails.root.join('private', 'uploads','sfile','syncfile',params[:userid],params[:fname]), :x_sendfile=>true
+    #send_file "#{Rails.root}#{params[:fname]}", :x_sendfile=>true
+    send_file "#{params[:fname]}", :x_sendfile=>true
+  end
+  
+  def view
+    #send_file "#{Rails.root}#{params[:fname]}", :disposition => 'inline'
+    send_file "#{params[:fname]}", :disposition => 'inline'
   end
   
   private 

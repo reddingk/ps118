@@ -13,21 +13,13 @@
     
     <!--Right Section-->
     <div class="col-md-6 brainy-border">
-        <!--<div id="tree-box">
-	        <ul id="tree-box-list" aria-dropeffect="copy execute"> 
-    	        <li>Drag and drop folder here</li>
-            </ul>
-        </div>
-        <button id="submit-logs" class="buttonesque" type="button">Submit</button>
-        <button id="clear-logs" class="buttonesque" type="button">Clear</button>
-        -->
         <div class="well">
           <%= form_for @sfile_u, html: { multipart: true } do |f| %>
             <%= f.label :name %>
             <%= f.text_field :name %>
             
             <%=f.label :devid %>
-            <%=f.text_field :devid %>
+            <%=f.collection_select(:devid, Device.where("userid = ?", current_user.id), :id, :name ) %>
             
             <%= f.label :syncfile %>
             <%= f.file_field :syncfile %>
@@ -47,7 +39,8 @@
             <tr>
               <th>Name</th>
               <th>User Id</th>
-              <th>Device Id</th>
+              <th>Device</th>
+              <th>View Link</th>
               <th>Download Link</th>
               <th>&nbsp;</th>
             </tr>
@@ -57,8 +50,11 @@
               <tr>
                 <td><%= sfile.name %></td>
                 <td><%= sfile.userid %></td>
-                <td><%= sfile.devid %></td>
-                <td><%= link_to "Download File", sfile.syncfile_url %></td>
+                <td><%= Device.find_by(id: sfile.devid).name %></td>
+                
+                <td><%= link_to "View File", {controller: "brainy", action: "view", :fname => sfile.syncfile}, :target => "_blank" %></td>
+                <td><%= link_to "Download File", {controller: "brainy", action: "download", :fname => sfile.syncfile} %></td>
+                
                 <td><%= button_to "Delete",  sfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{sfile.name}?" %></td>
               </tr>
             <% end %>

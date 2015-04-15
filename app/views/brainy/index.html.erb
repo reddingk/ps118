@@ -1,2 +1,39 @@
-<h1>Brainy#index</h1>
-<p>Find me in app/views/brainy/index.html.erb</p>
+<% provide(:title, "Brainy") %>
+
+<h1 class="page-title brainy-set"><%= image_tag('silo/Brainy.png', class:'ps-page-icon', alt:'Brainy') %> Brainy</h1>
+
+<div class="row">
+    <!--Left Section-->
+    <div class="col-md-5 brainy-border">
+        
+    </div>
+    
+    <!--Add Space-->
+    <div class="col-md-1"></div>
+    
+    <!--Right Section-->
+    <div class="col-md-6 brainy-border">
+        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 brainy-border" >
+        <ul class="collapsible-list">
+            <% @device.each do |device| %>
+                <li>
+                    <%= image_tag('folder.png', alt:'File-Folder') %>
+                    <label for="<%= device.id %>" id=""> <%= device.name %></label>
+                    <input type="checkbox" id="<%= device.id %>"/>
+                    <ul class="file-list">
+                        <% @sfile.where("devid=?", device.id).collect do |sfile| %>
+                            <li><%= image_tag('file.png', alt:'File-Folder') %><%= sfile.name %> <%= link_to "View File", {controller: "brainy", action: "view", :fname => sfile.syncfile}, :target => "_blank" %></li>
+                        <% end %>
+                    </ul>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+
+<div class="row"></div>
