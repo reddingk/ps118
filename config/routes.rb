@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get 'UserManagement'  => 'users#index'
   get 'users/new'
   get 'users/edit' 
+  get 'users/updatehome'
+  get 'users/settings' 
   
 #Sessions
   get    'login' => 'sessions#new'

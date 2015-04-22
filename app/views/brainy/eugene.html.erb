@@ -3,18 +3,25 @@
 
 <div class="row">
     <!--Left Section-->
-    <div class="col-md-5 brainy-border">
+    <div class="col-md-5 brainy-border brainy-check">
         <%= select("Device_choice", "Device_id", @device.collect {|p| [ p.name, p.id ] }, :selected => @pageid)%>
         
         <p><b>Device Type:</b> <%= @device.find(@pageid).dev_type %></p>
         <p><b>Number of files:</b> <%= @sfile.size %></p>
+        <p><b>Last file sync:</b> 
+          <% if @sfile.size == 0 %>
+            None
+          <% else %>
+            <%= @sfile.order(created_at: :desc).first.created_at.to_formatted_s(:long_ordinal)  %>
+          <% end %>
+        </p>
     </div>
     
     <!--Add Space-->
     <div class="col-md-1"></div>
     
     <!--Right Section-->
-    <div class="col-md-6 brainy-border">
+    <div class="col-md-6 brainy-border brainy-check">
         <div class="well">
           <%= form_for @sfile_u, html: { multipart: true } do |f| %>
             <%= f.label :name %>
@@ -22,6 +29,7 @@
             
             <%= f.label :syncfile %>
             <%= f.file_field :syncfile %>
+            
             
             <%= f.hidden_field :userid  , :value => current_user.id %>
             <%= f.hidden_field :devid %>
@@ -34,14 +42,13 @@
 
 <div class="row">
     <div class="col-md-12 brainy-border" >
-        <table class="table table-bordered table-striped">
+        <table class="table eugene-table">
           <thead>
             <tr>
               <th>Name</th>
-              <th>User Id</th>
               <th>Device</th>
-              <th>View Link</th>
-              <th>Download Link</th>
+              <th>View File</th>
+              <th>Download File</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
@@ -49,10 +56,9 @@
             <% @sfile.each do |sfile| %>
               <tr>
                 <td><%= sfile.name %></td>
-                <td><%= sfile.userid %></td>
                 <td><%= @device.find(sfile.devid).name %></td>
-                <td><%= link_to "View File", {controller: "brainy", action: "view", :fname => sfile.syncfile}, :target => "_blank" %></td>
-                <td><%= link_to "Download File", {controller: "brainy", action: "download", :fname => sfile.syncfile} %></td>
+                <td><%= link_to ("<i class='glyphicon glyphicon-eye-open'></i>").html_safe, {controller: "brainy", action: "view", :fname => sfile.syncfile}, :target => "_blank", :class => "file-select" %></td>
+                <td><%= link_to ("<i class='glyphicon glyphicon-cloud-download'></i>").html_safe, {controller: "brainy", action: "download", :fname => sfile.syncfile}, :class => "file-select" %></td>
                 
                 <td><%= button_to "Delete",  sfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{sfile.name}?" %></td>
               </tr>

@@ -23,7 +23,7 @@
             <% if current_user.admin?  %>
               <li><%=link_to "User Management", { controller: "users", action: "index"}%></li>
             <% end %>
-            <li><%=link_to "Settings", { controller: "users", action: "edit", :id => current_user.id }%></li>
+            <li><%=link_to "Settings", { controller: "users", action: "settings" }%></li>
             <li><%=link_to "Log out", { controller: "sessions", action: "destroy"}%></li>
           </ul>
         </li>
@@ -52,11 +52,11 @@
            <%if logged_in? %>
             <li class="dropdown">
               <a href="" class="dropdown-toggle ps-nav-link" data-toggle="dropdown" role="button" aria-expanded="false"><%=image_tag('Gerald_G.png', class:'ps-nav-icons0', alt:'Gerald Gang') %>
-                <i class="glyphicon glyphicon-th-large"></i></span></a>
+                <i class="glyphicon glyphicon-th-large"></i></a>
     	           <ul class="dropdown-menu" role="menu" id="gerald-drop">
     	            	<li><%=link_to (image_tag('silo/Gerald.png', class:'ps-nav-icons1', alt:'Gerald')+"Gerald").html_safe, { controller: "gerald", action: "index"}, class:"navbar-brand nav-txt"%></li>
     	            	<li><%=link_to (image_tag('silo/Arnold.png', class:'ps-nav-icons1', alt:'Arnold')+"Arnold").html_safe, { controller: "gerald", action: "arnold"}, class:"navbar-brand nav-txt"%></li>
-    	              <li><%=link_to (image_tag('silo/Sid.png', class:'ps-nav-icons1', alt:'Sid')+"Sid").html_safe, { controller: "gerald", action: "sid"}, class:"navbar-brand nav-txt"%></li>	                  
+    	              <li><%=link_to (image_tag('silo/Sid.png', class:'ps-nav-icons1', alt:'Sid')+"Sid").html_safe, { controller: "gerald", action: "construction"}, class:"navbar-brand nav-txt"%></li>	                  
     	          </ul>
             </li>
             <li class="dropdown">

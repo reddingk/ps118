@@ -6,6 +6,8 @@ class SfilesController < ApplicationController
   def create
     @sfile = Sfile.new(sfile_params)
     if @sfile.save
+      
+      ##Device.find(@sfile.devid).update(updated_at: Time.now)
       redirect_to '/brainy/eugene'
       flash[:success] = "The file #{@sfile.name} has been uploaded."
     else

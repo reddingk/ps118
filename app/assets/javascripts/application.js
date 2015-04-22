@@ -18,8 +18,7 @@
 
 $(document).ready(function () {
   
-    
-  
+    $('.has-tooltip').tooltip({placement: 'right'});
 });
     
 /*Brainy*/

@@ -9,7 +9,8 @@
       <%= f.text_field :name %>
 
       <%= f.label :dev_type %>
-      <%= f.text_field :dev_type %>
+      <!--< %= f.text_field :dev_type %>-->
+      <%= f.select :dev_type, ['PC', 'Mobile', 'Tablet', 'Other'], :prompt => 'Select Device Type'  %>
       
       <%= f.hidden_field :userid  , :value => current_user.id %>
       

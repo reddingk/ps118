@@ -12,4 +12,14 @@ class GeraldController < ApplicationController
   
   def construction
   end
+  
+  def _per_home
+    #@user = User.find(current_user.id)
+    #@widgets = @user.personal_page.split(",")
+    
+    #if @widgets == nil
+    #  @widgets = ["None", "None", "None", "None"]
+    #end
+  end
+  
 end

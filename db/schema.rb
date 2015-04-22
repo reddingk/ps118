@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324235747) do
+ActiveRecord::Schema.define(version: 20150420174019) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150324235747) do
     t.datetime "updated_at",                                  null: false
     t.string   "password_digest", limit: 255
     t.boolean  "admin",           limit: 1,   default: false
+    t.string   "personal_page",   limit: 255
   end
 
 end

@@ -19,20 +19,37 @@ class UsersController < ApplicationController
     end
   end
   
+  def settings
+    
+  end  
+  
   def edit
-    #@user = User.find(session[:user_id])
-    @user = User.find(params[:id])
+    @user = User.find(params[:userid])
+    #@user = User.find(params[:id])
   end
   
   def update
-    #@user = User.find(session[:user_id])
+    #@user = User.find(params[:userid])
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to :root
+    elsif @user.update_attribute(:personal_page ,user_params_personal["personal_page"] )
+      flash[:success] = "Gerald updated"
+      redirect_to :root
     else
-      render 'edit'
+      render 'settings'
     end
+  end
+  
+  def updatehome
+    @user = User.find(params[:userid])
+    @widgets = @user.personal_page.split(",")
+    
+    if @widgets == nil
+      @widgets = ["None", "None", "None", "None"]
+    end
+   
   end
   
   def destroy
@@ -44,7 +61,11 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:username, :password,:password_confirmation, :email, :firstname, :lastname, :admin)
+      params.require(:user).permit(:username, :password,:password_confirmation, :email, :firstname, :lastname, :admin, :personal_page)
+    end
+    
+    def user_params_personal
+      params.require(:user).permit(:personal_page)
     end
   
 end

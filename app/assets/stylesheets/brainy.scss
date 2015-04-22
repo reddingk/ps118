@@ -32,8 +32,23 @@
         }
         
         .collapsible-list {list-style: none;}
-        .collapsible-list > li { display: block;}
+        .collapsible-list > li { display: block; font-size: 20px; border-bottom: 1px solid #B5232B;}
+        .collapsible-list > li > label { margin-bottom: 0px; }
+        
+        .collapsible-list > li > .file-list > li { line-height: 22px;}
         
         .collapsible-list li > input[type=checkbox] { width: 10%; opacity: 0;}
         .collapsible-list li > input[type=checkbox] + .file-list > li { display: none; }
         .collapsible-list li > input[type=checkbox]:checked + .file-list > li { display: block; }
+        
+        .brainy-table th , .brainy-table td, .eugene-table th , .eugene-table td { text-align: center; color: #000000;}
+        .brainy-table th { color: #ffffff; }
+        
+        .eugene-table > thead > tr > th { border-bottom: 2px solid #B5232B !important;}
+        .eugene-table td { border-bottom: 1px solid #B5232B;}
+        
+        .file-icon { font-size: 14px;}
+        .file-icon, .file-icon:hover, .file-icon > i, .file-icon > i :hover {color: #000000; }
+        
+        .file-select { text-decoration: underline; }
+        .no-files { font-size: 12px; }
