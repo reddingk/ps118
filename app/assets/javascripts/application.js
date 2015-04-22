@@ -215,3 +215,15 @@ function appendContainer() {
         document.getElementById('tree-box').appendChild(div);
     }
 }
+
+/*Jada*/
+
+function Jada_Thought(command) {
+    alert(command);
+    /*Look For Action Word*/
+        /*Look For Action Destination*/
+        
+    /*Perform Action*/
+    /*Return to Recording State if no phrase match*/
+    
+}

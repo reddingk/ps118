@@ -95,7 +95,7 @@
           <p id="info_upgrade">Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
     </div>
     <div class="right">
-          <button id="start_button" onclick="startButton(event)"><img id="start_img" src="mic.gif" alt="Start"></button>
+        <button id="start_button" onclick="startButton(event)"><%= image_tag('mic.gif', alt:'Start', id:'start_img') %></button>
     </div>
     
     <div id="results">
@@ -113,10 +113,10 @@
       </div>
       
       <div class="sidebyside">
-        <button id="email_button" class="button" onclick="emailButton()">Create Email</button>
-        <div id="email_info" class="info">
-          Text sent to default email application.<br>
-          (See chrome://settings/handlers to change.)
+        <button id="cmd_button" class="button" onclick="cmdButton()">
+          Jada Command</button>
+        <div id="cmd_info" class="info">
+          Command Info
         </div>
       </div>
       
@@ -210,7 +210,6 @@
           }
           select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
         }
-        var create_email = false;
         var final_transcript = '';
         var recognizing = false;
         var ignore_onend;
@@ -225,16 +224,16 @@
           recognition.onstart = function() {
             recognizing = true;
             showInfo('info_speak_now');
-            start_img.src = 'mic-animate.gif';
+            start_img.src = '<%= asset_path 'mic-animate.gif' %>';
           };
           recognition.onerror = function(event) {
             if (event.error == 'no-speech') {
-              start_img.src = 'mic.gif';
+              start_img.src = '<%= asset_path 'mic.gif' %>';
               showInfo('info_no_speech');
               ignore_onend = true;
             }
             if (event.error == 'audio-capture') {
-              start_img.src = 'mic.gif';
+              start_img.src = '<%= asset_path 'mic.gif' %>';
               showInfo('info_no_microphone');
               ignore_onend = true;
             }
@@ -252,7 +251,7 @@
             if (ignore_onend) {
               return;
             }
-            start_img.src = 'mic.gif';
+            start_img.src = '<%= asset_path 'mic.gif' %>';
             if (!final_transcript) {
               showInfo('info_start');
               return;
@@ -263,10 +262,6 @@
               var range = document.createRange();
               range.selectNode(document.getElementById('final_span'));
               window.getSelection().addRange(range);
-            }
-            if (create_email) {
-              create_email = false;
-              createEmail();
             }
           };
           recognition.onresult = function(event) {
@@ -299,14 +294,18 @@
         function capitalize(s) {
           return s.replace(first_char, function(m) { return m.toUpperCase(); });
         }
-        function createEmail() {
-          var n = final_transcript.indexOf('\n');
-          if (n < 0 || n >= 80) {
-            n = 40 + final_transcript.substring(40).indexOf(' ');
+        function cmdButton() {
+          if (recognizing) {
+            recognizing = false;
+            recognition.stop();
           }
-          var subject = encodeURI(final_transcript.substring(0, n));
-          var body = encodeURI(final_transcript.substring(n + 1));
-          window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+          cmd_button.style.display = 'none';
+          copy_button.style.display = 'none';
+          cmd_info.style.display = 'inline-block';
+          
+          /*Send to System Function*/
+          Jada_Thought(final_transcript);
+          showInfo('');
         }
         function copyButton() {
           if (recognizing) {
@@ -315,18 +314,6 @@
           }
           copy_button.style.display = 'none';
           copy_info.style.display = 'inline-block';
-          showInfo('');
-        }
-        function emailButton() {
-          if (recognizing) {
-            create_email = true;
-            recognizing = false;
-            recognition.stop();
-          } else {
-            createEmail();
-          }
-          email_button.style.display = 'none';
-          email_info.style.display = 'inline-block';
           showInfo('');
         }
         function startButton(event) {
@@ -340,7 +327,7 @@
           ignore_onend = false;
           final_span.innerHTML = '';
           interim_span.innerHTML = '';
-          start_img.src = 'mic-slash.gif';
+          start_img.src = '<%= asset_path 'mic-slash.gif' %>';
           showInfo('info_allow');
           showButtons('none');
           start_timestamp = event.timeStamp;
@@ -364,9 +351,10 @@
           }
           current_style = style;
           copy_button.style.display = style;
-          email_button.style.display = style;
           copy_info.style.display = 'none';
-          email_info.style.display = 'none';
+          
+          cmd_button.style.display = style;
+          cmd_info.style.display = 'none';
         }
 </script>
 
