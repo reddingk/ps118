@@ -13,12 +13,13 @@
 <div class="w-sections">
   <% case @widgets[location]
        when "Arnold" %>
+       <p><%= browser.name %> <%= browser.full_version %>
         <% if browser.chrome? == true %>
-          <p class="go">
+          <i class='go glyphicon glyphicon-ok'></i></p>
         <% else %>
-          <p class="no_go">
+          <i class='no-go glyphicon glyphicon-remove'></i></p>
         <% end %>
-        <%= browser.name %> <%= browser.full_version %></p>
+        
         <div class="txt-info">
           <p>Total number of devices: <span><%= @devices.count %></span>
             <% @devices.each do |device|%>
@@ -68,6 +69,6 @@
         </div>
         <%=link_to (image_tag('silo/Eugene.png', class:'ps-nav-icons1 icon-invert', alt:'Eugene')).html_safe, { controller: "brainy", action: "eugene"}, class:"navbar-brand w-link"%>
     <% else %> 
-        <h3>Sorry You Have Not Selected A PS-Widget For This Area</h3>
+        <h4>Sorry You Have Not Selected A PS-Widget For This Area</h4>
   <% end %>
 </div>

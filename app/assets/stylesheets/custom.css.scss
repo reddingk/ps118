@@ -27,10 +27,10 @@ p { color: #000000; }
 .helga-set { color: #D97987; }
 .phoebi-set { color: #E2A83F; }
 
-.gerald-border { border: 5px solid #6CA3D7;  border-radius: 0px 20px 0px 20px; padding: 10px; }
-.brainy-border { border: 5px solid #B5232B;  border-radius: 0px 20px 0px 20px;  padding: 10px; }
-.helga-border { border: 5px solid #D97987;  border-radius: 0px 20px 0px 20px;  padding: 10px; }
-.phoebi-border { border: 5px solid #E2A83F;  border-radius: 0px 20px 0px 20px;  padding: 10px; }
+.gerald-border { border: 5px solid #6CA3D7;  border-radius: 0px 20px 0px 20px; padding: 10px; box-shadow: 10px 10px 5px #888888;}
+.brainy-border { border: 5px solid #B5232B;  border-radius: 0px 20px 0px 20px;  padding: 10px; box-shadow: 10px 10px 5px #888888;}
+.helga-border { border: 5px solid #D97987;  border-radius: 0px 20px 0px 20px;  padding: 10px; box-shadow: 10px 10px 5px #888888;}
+.phoebi-border { border: 5px solid #E2A83F;  border-radius: 0px 20px 0px 20px;  padding: 10px; box-shadow: 10px 10px 5px #888888;}
 
 .gerald-check { background-color: #6CA3D7; }
 .brainy-check { background-color: #B5232B; }
@@ -54,7 +54,7 @@ p { color: #000000; }
 }
 
 
-.well {   border-radius: 0px; }
+.well {   border-radius: 0px 20px 0px 20px; }
 
 /*User list*/
 .users {

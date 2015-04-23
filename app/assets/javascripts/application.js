@@ -19,6 +19,7 @@
 $(document).ready(function () {
   
     $('.has-tooltip').tooltip({placement: 'right'});
+     
 });
     
 /*Brainy*/
@@ -217,13 +218,79 @@ function appendContainer() {
 }
 
 /*Jada*/
+function showInfo(s) {
+  if (s) {
+    for (var child = document.getElementById('info').firstChild; child; child = child.nextSibling) {
+      if (child.style) {
+        child.style.display = child.id == s ? 'inline' : 'none';
+      }
+    }
+    document.getElementById('info').style.visibility = 'visible';
+  } else {
+    document.getElementById('info').style.visibility = 'hidden';
+  }
+  //alert("[ "+s);
+}
 
 function Jada_Thought(command) {
-    alert(command);
-    /*Look For Action Word*/
-        /*Look For Action Destination*/
-        
-    /*Perform Action*/
-    /*Return to Recording State if no phrase match*/
     
+    var characters = ["gerald","arnold","brainy","eugene", "settings"];
+    var errormessage ="1";
+    var c_res = command.split(" ");
+    /*Look For Action Word*/
+    for(var i=0; i< c_res.length; i++)
+    {
+        switch (c_res[i].toLowerCase()){
+            //Visit specific page
+            case "visit":
+                
+                var url_control= ["","gerald/arnold","brainy/index","brainy/eugene","users/settings"];
+                if((i+1) != c_res.length){
+                    if($.inArray(c_res[i+1].toLowerCase(), characters) > -1)
+                    {   
+                        window.location.href = "../"+url_control[characters.indexOf(c_res[i+1].toLowerCase())];
+                        return;
+                    }
+                    else{
+                        errormessage = errormessage == "1" ? "Page Not Found: E2-page": errormessage ;
+                        //return;
+                    }
+                }
+                break;
+            //View File
+            case "view":
+                break;
+            //Add New Device
+            case "add":
+                if((i+2) < c_res.length){
+                    if((c_res[i+1].toLowerCase() == "new") && (c_res[i+2].toLowerCase() =="device"))
+                    {   
+                        window.location.href = "../devices/new";
+                        return;
+                    }
+                    else{
+                        errormessage = errormessage == "1" ?  "Sorry Phrase Not Recoginzed: E3-dev" : errormessage;
+                    }
+                }
+                
+                break;
+            //Get information
+            case "get":
+                //Ideas:
+                //    Time
+                //    Browser Info
+                //    List of Devices
+                //    List of Files for Device
+                //    Device Info
+                //    File Info
+                //    User Info
+                
+                break;
+            default:
+                break;
+        }
+    }
+    
+    document.getElementById('info_no_cmd').innerHTML = errormessage == "1" ?  "Sorry Phrase Not Recoginzed:" + command : errormessage;
+    showInfo('info_no_cmd');
 }
